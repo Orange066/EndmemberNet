@@ -4,11 +4,11 @@ Official Implementation for "Real-time Deep Learning Spectral Imaging In vivo".
 
 We provide a live demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
 
-![demo1](.\demo\demo1.png)
+![demo1](./demo/demo1.png)
 
 1. Download the Finetuned Models
 
-You can download the finetuned models  from [the Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples  [the Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
+You can download the finetuned models  from [the Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and from the examples  [the Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
 
 ```
 exampledata/
@@ -72,11 +72,11 @@ detection/
 Run the following code to train and test the detection model:
 
 ```
-cd detection
+cd detection # Get into the directory
 
-CUDA_VISIBLE_DEVICES=0 python train.py --data data/unmixing/unmixing.yaml --name unmixing
+CUDA_VISIBLE_DEVICES=0 python train.py --data data/unmixing/unmixing.yaml --name unmixing # Train the model
 
-sed -i 's/\r//' test.sh && bash test.sh
+sed -i 's/\r//' test.sh && bash test.sh # Test the model
 ```
 
 You can then find the trained detection model and the test dataset results in the `detection/runs/train/` and `detection/runs/detect/` folders, respectively.
@@ -86,11 +86,11 @@ You can then find the trained detection model and the test dataset results in th
 Run the following code to train and test the segmentation model:
 
 ```
-cd segmentation
+cd segmentation # Get into the directory
 
-CUDA_VISIBLE_DEVICES=0 python train.py
+CUDA_VISIBLE_DEVICES=0 python train.py # Train the model
 
-CUDA_VISIBLE_DEVICES=0 python test.py
+CUDA_VISIBLE_DEVICES=0 python test.py # Test the model
 ```
 
 You can then find the trained segmentation model and the test dataset results in the ` segmentation/train_log/` and `metric/` folders, respectively.
@@ -100,7 +100,7 @@ You can then find the trained segmentation model and the test dataset results in
 Run the following code to generate the unmixing results in the `unmix/` folder:
 
 ```
-python unmixing.py
+python unmixing.py # unmixing.py file is in the root path
 ```
 
 ### 5. Demo
