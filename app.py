@@ -623,7 +623,6 @@ def update_file_list(folder_path, custom_example):
     else:
         return None, ''
 
-
 def convert_files(folder_path, process_type):
     tif_files = get_tif_files(folder_path)
     if process_type == 'Image':
@@ -635,6 +634,7 @@ def convert_files(folder_path, process_type):
         png_files = png_files[:len(png_files) // 5 * 5]
         png_arrays = png_arrays[:len(png_files) // 5 * 5]
         frame_l = []
+
         for i in range(len(png_files) // 5):
             png_arrays_sub_0 = np.concatenate([png_arrays[i * 5], png_arrays[i * 5 + 1], png_arrays[i * 5 + 2]], axis=1)
             ones_part = np.ones_like(png_arrays[i * 5]) * 255
@@ -643,15 +643,15 @@ def convert_files(folder_path, process_type):
             frame_l.append(png_arrays_sub)
         video_path_all = os.path.join(folder_path, 'video' + '.mp4')
         video_path_all = create_video_from_images(frame_l, video_path_all)
+
+
         files_name = png_files[:5]
         files_name.append(video_path_all)
-
         for i in range(5):
             png_arrays_sub = png_arrays[i::5]
             video_path = os.path.join(folder_path, 'video_' + str(i).zfill(4) + '.mp4')
             video_path = create_video_from_images(png_arrays_sub, video_path)
             files_name.append(video_path)
-
         output_txt_path = os.path.join(folder_path, 'readme.txt')
         readme_str = 'The video contains too many tif files, we offer the first five images for download.'
         with open(output_txt_path, "w", encoding="utf-8") as file:
