@@ -2,13 +2,13 @@
 Official Implementation for "Real-time Deep Learning Spectral Imaging In vivo".
 ## Offline Demo
 
-We provide a live demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
+We provide a offline demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
 
 ![demo1](./demo/demo1.png)
 
 1. Download the Finetuned Models
 
-You can download the finetuned models  from [the Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and from the examples  [the Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
+You can download the finetuned models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
 
 ```
 exampledata/
@@ -34,7 +34,7 @@ conda activate unmixing
 conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia
 ```
 
-* Python Packages: 
+* Install Python Packages: 
 
 You can install the required python packages by the following command:
 
@@ -56,7 +56,7 @@ Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0
 
 ### 1. Prepare the datasets
 
-You can download our preprocessed  training, validation, testing datas from [the Zenodo repository](https://doi.org/10.5281/zenodo.13622692) and extract it into the `detection/` folder. The data path should be structured as follows:
+You can download our preprocessed  training, validation, testing datas from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692) or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_TrainValTestData)and extract it into the `detection/` folder. The data path should be structured as follows:
 
 ```
 detection/
