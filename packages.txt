@@ -191,7 +191,7 @@ networkx==3.0
 ninja==1.11.1
 nltk==3.8.1
 numba==0.59.1
-numpy==1.22.2
+numpy==1.23.0
 oauthlib==3.2.2
 omegaconf==2.1.2
 onnx==1.15.0
@@ -362,10 +362,6 @@ toml==0.10.2
 tomli==2.0.1
 tomlkit==0.12.0
 toolz==0.12.0
-torch==2.0.1
-torchaudio==2.0.2
-torchmetrics==1.0.3
-torchvision==0.15.2
 tornado==6.3.3
 tqdm==4.65.0
 traitlets==5.12.0
