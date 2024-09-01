@@ -56,7 +56,7 @@ Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0
 
 ### 1. Prepare the datasets
 
-You can download our preprocessed  training, validation, testing datas from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692) or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_TrainValTestData)and extract it into the `detection/` folder. The data path should be structured as follows:
+You can download our preprocessed  training, validation, testing datas from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692) or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_TrainValTestData) and extract it into the `detection/` folder. The data path should be structured as follows:
 
 ```
 detection/
