@@ -2,11 +2,9 @@
 Official Implementation for "Real-time Deep Learning Spectral Imaging In vivo".
 ## Online Demo
 
-We provide a live demo for EndmemberNet at http://fdudml.cn:6789. You can also use the colab <a target="_blank" href="https://colab.research.google.com/github/cxm12/UNiFMIR/blob/main/UniFMIR.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>, the openxlab app [![Open in OpenXLab](https://cdn-static.openxlab.org.cn/app-center/openxlab_app.svg)](https://openxlab.org.cn/apps/detail/ryanhe312/UniFMIR) or employ the following steps to run the demo locally.
+We provide a live demo for EndmemberNet at http://fdudml.cn:6789. You can also use the colab <a target="_blank" href="https://colab.research.google.com/github/cxm12/UNiFMIR/blob/main/UniFMIR.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> or employ the following steps to run the demo locally.
 
 ![demo1](.\demo\demo1.png)
-
-## User Interface for EndmemberNet
 
 1. Download the Finetuned Models
 
@@ -21,7 +19,7 @@ checkpoints/
     segmentation/
 ```
 
-1. Install Packages 
+2. Install Packages 
 
 * We use Anaconda to create enviroment.
 
@@ -44,7 +42,7 @@ You can install the required python packages by the following command:
 pip install ultralytics gitpython opencv-python lmdb imageio scikit-image tensorboard medpy numpy scipy tiffile matplotlib protobuf gradio==3.39.0 fastapi==0.111.0 fastapi-cli==0.0.4 gradio_client==0.16.1  httpx==0.24.1 nest-asyncio==1.5.8 uvicorn==0.30.1 torchmetrics==1.0.3
 ```
 
-2. Run the Web Interface
+3. Run the Web Interface
 
 You can run the web interface by the following command:
 
@@ -126,5 +124,5 @@ If you use this code for your research, please cite our paper.
 
 ## Credit
 
-Our code borrows from [YOLOv5]([ultralytics/yolov5: YOLOv5 🚀 in PyTorch > ONNX > CoreML > TFLite (github.com)](https://github.com/ultralytics/yolov5)), [Deeplabv3+]([VainF/DeepLabV3Plus-Pytorch: Pretrained DeepLabv3 and DeepLabv3+ for Pascal VOC & Cityscapes (github.com)](https://github.com/VainF/DeepLabV3Plus-Pytorch)), and [RIFE]([[hzwer/ECCV2022-RIFE: ECCV2022 - Real-Time Intermediate Flow Estimation for Video Frame Interpolation (github.com)](https://github.com/hzwer/ECCV2022-RIFE)))
+Our code borrows from [YOLOv5](https://github.com/ultralytics/yolov5), [Deeplabv3+](https://github.com/VainF/DeepLabV3Plus-Pytorch), and [RIFE](https://github.com/hzwer/ECCV2022-RIFE)
 
