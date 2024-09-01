@@ -8,7 +8,7 @@ We provide a offline demo for EndmemberNet at http://fdudml.cn:6789. You can als
 
 1. Download the Finetuned Models
 
-You can download the finetuned models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
+You can download the finetuned models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet. The path should be structured as follows:
 
 ```
 exampledata/
@@ -105,7 +105,18 @@ python unmixing.py # unmixing.py file is in the root path
 
 ### 5. Demo
 
-Copy `detection/runs/train/unmixing/weights/best.pt` to `checkpoints/detection/`, and copy `segmentation/train_log/checkpoints/detection/multimodal.pkl` to `checkpoints/segmentation/`. After that, run the following command:
+Copy `detection/runs/train/unmixing/weights/best.pt` to `checkpoints/detection/`, and copy `segmentation/train_log/checkpoints/detection/multimodal.pkl` to `checkpoints/segmentation/`.  Then, download the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet, and 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet. The path should be structured as follows:
+
+```
+exampledata/
+    Unmixing/
+
+checkpoints/
+    detection/
+    segmentation/
+```
+
+After that, run the following command:
 
 ```
 python demo.py
