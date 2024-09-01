@@ -1,14 +1,14 @@
 # EndmemberNet
 Official Implementation for "Real-time Deep Learning Spectral Imaging In vivo".
-## Online Demo
+## Offline Demo
 
-We provide a live demo for EndmemberNet at http://fdudml.cn:6789. You can also use the colab <a target="_blank" href="https://colab.research.google.com/github/cxm12/UNiFMIR/blob/main/UniFMIR.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> or employ the following steps to run the demo locally.
+We provide a live demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
 
 ![demo1](.\demo\demo1.png)
 
 1. Download the Finetuned Models
 
-You can download the finetuned models  [the Zenodo repository](https://doi.org/10.5281/zenodo.13622929) and the examples  [the Zenodo repository](https://doi.org/10.5281/zenodo.13622692) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
+You can download the finetuned models  from [the Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples  [the Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can 'tar -xzvf' the file and put the folder in the root directory of EndmemberNet .
 
 ```
 exampledata/
@@ -28,7 +28,7 @@ conda create -n unmixing python=3.9
 conda activate unmixing
 ```
 
-* Pytorch 2.0.1, CUDA 11.7 and CUDNN 
+* Install Pytorch 2.0.1, CUDA 11.7 and CUDNN 
 
 ```
 conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia
@@ -39,7 +39,7 @@ conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=
 You can install the required python packages by the following command:
 
 ```
-pip install ultralytics gitpython opencv-python lmdb imageio scikit-image tensorboard medpy numpy scipy tiffile matplotlib protobuf gradio==3.39.0 fastapi==0.111.0 fastapi-cli==0.0.4 gradio_client==0.16.1  httpx==0.24.1 nest-asyncio==1.5.8 uvicorn==0.30.1 torchmetrics==1.0.3
+pip install ultralytics gitpython opencv-python lmdb imageio scikit-image tensorboard medpy numpy==2.23.0 scipy tiffile matplotlib protobuf gradio==3.39.0 fastapi==0.111.0 fastapi-cli==0.0.4 gradio_client==0.16.1  httpx==0.24.1 nest-asyncio==1.5.8 uvicorn==0.30.1
 ```
 
 3. Run the Web Interface
@@ -95,7 +95,7 @@ CUDA_VISIBLE_DEVICES=0 python test.py
 
 You can then find the trained segmentation model and the test dataset results in the ` segmentation/train_log/` and `metric/` folders, respectively.
 
-### 4. Train segmentation model
+### 4. Unmixing
 
 Run the following code to generate the unmixing results in the `unmix/` folder:
 
@@ -113,16 +113,6 @@ python demo.py
 
 Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0.1:7866/). You can upload your own image or use our examples to run EndmemberNet.
 
-
-## CITATION
-
-If you use this code for your research, please cite our paper.
-
-```bibtex
-
-```
-
 ## Credit
 
 Our code borrows from [YOLOv5](https://github.com/ultralytics/yolov5), [Deeplabv3+](https://github.com/VainF/DeepLabV3Plus-Pytorch), and [RIFE](https://github.com/hzwer/ECCV2022-RIFE)
-
