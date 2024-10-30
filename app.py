@@ -702,12 +702,12 @@ with gr.Blocks() as demo:
         "This demo allows you to run the models on your own images or the examples  from the paper. Please refer to the paper for more details.")
 
     gr.Markdown(
-        "This is an offline demo, and we also provide an online unmixing version in the 'software' folder.")
+        "This is an online but non-real-time demo that processes all the spectral images before returning the results. We also provide a real-time unmixing version in the 'software' folder.")
 
 
     gr.Markdown("## Instructions")
     gr.Markdown(
-        "1. We provide all test data here for display. You can also upload your zip file. The zip file contains the fluorescence images at each moment in chronological order, and the fluorescence image is in tif format.")
+        "1. We provide all test data here for display. You can also upload your zip file. The zip file contains the spectral images at each moment in chronological order, and the spectral image is in tif format.")
     gr.Markdown(
         "2. Select how you want the model to process the files. 'Image' denotes only processing the first five tif files, and 'Video' denotes processing all files. Video will take longer to process.")
     gr.Markdown(

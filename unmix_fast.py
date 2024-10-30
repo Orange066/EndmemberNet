@@ -7,7 +7,7 @@ from skimage import io
 import utility
 
 
-sample_id_l = [5, 15, 18, 19, 25, 26, 20, 27, 24]
+sample_id_l = [5, 15, 18, 19, 25, 26, 29, 30, 31, 32, 20, 27, 24]
 
 for sample_id in sample_id_l:
     sample_id = sample_id + 1
@@ -15,11 +15,19 @@ for sample_id in sample_id_l:
     tif_path = 'detection/data/unmixing/fluorescence_time_data_tif/' + str(sample_id).zfill(4) + '/'
     tif_files_all = os.listdir(tif_path)
     tif_files_all.sort()
-    save_path = 'unmix/results_' + str(sample_id).zfill(2) + '/'
+    save_path = 'unmix_fast/results_' + str(sample_id).zfill(2) + '/'
     os.makedirs(save_path, exist_ok=True)
+    os.makedirs(os.path.join(save_path, 'ori_tif'), exist_ok=True)
+    os.makedirs(os.path.join(save_path, 'ori_png'), exist_ok=True)
+    os.makedirs(os.path.join(save_path, 'unmix_tif'), exist_ok=True)
+    os.makedirs(os.path.join(save_path, 'unmix_png'), exist_ok=True)
+    os.makedirs(os.path.join(save_path, 'unmix_visualize'), exist_ok=True)
+    os.makedirs(os.path.join(save_path, 'A'), exist_ok=True)
+    # os.makedirs(os.path.join(save_path, 'box_visualize'), exist_ok=True)
+    # os.makedirs(os.path.join(save_path, 'model_visualize'), exist_ok=True)
 
     # path = '/opt/cr/unmixing/yolov5-master/results_unmixing10_2_auto_time04_crop3'
-    path = 'metric/results_' +str(sample_id).zfill(2)
+    path = 'metric_fast/results_' +str(sample_id).zfill(2)
     files_all = os.listdir(path)
     files_all.sort()
 
@@ -35,6 +43,8 @@ for sample_id in sample_id_l:
 
     A_l_past = []
     for idx, name_data in enumerate(name_data_l):
+        # if idx == 10:
+        #     break
         A_l = []
         for name_class in name_class_l:
             if os.path.exists(os.path.join(path, name_data + '_' + name_class + '_mask.png')) == False:
@@ -93,6 +103,8 @@ for sample_id in sample_id_l:
         # print('idx', idx)
         # print('A_l average:', A_l)
 
+        np.savetxt(os.path.join(save_path, 'A', str(idx).zfill(4) + '.txt'), A_l, fmt='%.4f', delimiter=' ')
+
         tif_files = tif_files_all[idx * 5:(idx + 1) * 5]
 
         tif_l = []
@@ -101,16 +113,25 @@ for sample_id in sample_id_l:
             tif = io.imread(input_path)
             tif_array = np.array(tif)
             tif_l.append(tif_array)
+
+        for t_id, t in enumerate(tif_l):
+            utility.save_tiff_imagej_compatible(os.path.join(save_path, 'ori_tif',
+                                                             str(idx).zfill(4) + '_' + str(
+                                                                 t_id).zfill(4) + '.tif'), t, 'YX')
+            t = (t - np.min(t)) / (np.max(t) - np.min(t) + 1e-4) * 255.
+            cv2.imwrite(os.path.join(save_path, 'ori_png',
+                                     str(idx).zfill(4) + '_' + str(t_id).zfill(4) + '.png'), t)
+
         tif_l = np.stack(tif_l, axis=2)
         colored_img = np.max(tif_l, axis = -1)
         colored_img = np.stack([colored_img]*3, axis=-1)
 
         unmixing_part = ['tumor', 'intestine', 'colon', 'lymph', 'vessel']
         h, w, c = tif_l.shape
-        _, n = A_l.shape
+        _, nn = A_l.shape
         tif_l = tif_l.reshape(h * w, c)
         unminxing_results = (np.linalg.pinv(A_l) @ tif_l.T).T
-        unminxing_results = unminxing_results.reshape(h, w, n)
+        unminxing_results = unminxing_results.reshape(h, w, nn)
         unminxing_results[unminxing_results < 0] = 0
 
         color_l = [[0, 0, 255],
@@ -124,13 +145,15 @@ for sample_id in sample_id_l:
         for i in range(unminxing_results.shape[2]):
 
             tif = unminxing_results[:, :, i]
-
-            unmixing_save_path = os.path.join(save_path, str(idx).zfill(4) + '_unmixing_' + unmixing_part[i] + '.tif')
+            unmixing_save_path = os.path.join(save_path, 'unmix_tif', str(idx).zfill(4) + '_' + str(i).zfill(4) + '.tif')
+            # unmixing_save_path = os.path.join(save_path, str(idx).zfill(4) + '_unmixing_' + unmixing_part[i] + '.tif')
             utility.save_tiff_imagej_compatible(unmixing_save_path, tif.astype(np.float32), 'YX')
 
-            tif = (tif - tif.min()) / (tif.max() - tif.min()) * 255
+            tif = (tif - tif.min()) / (tif.max() - tif.min() + 1e-6) * 255
 
-            unmixing_save_path = os.path.join(save_path, str(idx).zfill(4) + '_unmixing_' + unmixing_part[i] + '.png')
+            unmixing_save_path = os.path.join(save_path, 'unmix_png',
+                                              str(idx).zfill(4) + '_' + str(i).zfill(4) + '.png')
+            # unmixing_save_path = os.path.join(save_path, str(idx).zfill(4) + '_unmixing_' + unmixing_part[i] + '.png')
             cv2.imwrite(unmixing_save_path, tif)
 
             tif_normalized = tif.astype(np.uint8)
@@ -143,10 +166,11 @@ for sample_id in sample_id_l:
             # Add the color mask to the visualization image
             visualization = cv2.add(visualization, color_mask)
 
-        unmixing_save_path = os.path.join(save_path, str(idx).zfill(4) + '_unmixing_all' + '.png')
+        # unmixing_save_path = os.path.join(save_path, str(idx).zfill(4) + '_unmixing_all' + '.png')
+        unmixing_save_path = os.path.join(save_path, 'unmix_visualize', str(idx).zfill(4)  + '.png')
         cv2.imwrite(unmixing_save_path, visualization)
 
-        exit(0)
+        # exit(0)
 
 
 

@@ -36,6 +36,7 @@ import sys
 from pathlib import Path
 
 import torch
+import numpy as np
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
@@ -117,6 +118,7 @@ def run(
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
+    time_l = []
     for path, im, im0s, vid_cap, s in dataset:
         with dt[0]:
             im = torch.from_numpy(im).to(model.device)
@@ -227,6 +229,7 @@ def run(
                     vid_writer[i].write(im0)
 
         # Print time (inference-only)
+        time_l.append( dt[1].dt)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
     # Print results
@@ -237,7 +240,7 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
-
+    print('avg time:', np.mean(time_l))
 
 def parse_opt():
     parser = argparse.ArgumentParser()

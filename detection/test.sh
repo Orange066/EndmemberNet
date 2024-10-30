@@ -15,3 +15,11 @@ CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/be
 CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/best.pt --source data/unmixing/fluorescence_time_data/0027/ --save-txt --save-conf --save-crop   --conf-thres 0.05 --name unmixing_27
 
 CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/best.pt --source data/unmixing/fluorescence_time_data/0028/ --save-txt --save-conf --save-crop   --conf-thres 0.05 --name unmixing_28
+
+CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/best.pt --source data/unmixing/fluorescence_time_data/0030/ --save-txt --save-conf --save-crop   --conf-thres 0.05 --name unmixing_30
+
+CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/best.pt --source data/unmixing/fluorescence_time_data/0031/ --save-txt --save-conf --save-crop   --conf-thres 0.05 --name unmixing_31
+
+CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/best.pt --source data/unmixing/fluorescence_time_data/0032/ --save-txt --save-conf --save-crop   --conf-thres 0.05 --name unmixing_32
+
+CUDA_VISIBLE_DEVICES=0 python detect.py --weights runs/train/unmixing/weights/best.pt --source data/unmixing/fluorescence_time_data/0033/ --save-txt --save-conf --save-crop   --conf-thres 0.05 --name unmixing_33

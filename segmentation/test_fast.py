@@ -220,7 +220,9 @@ dc_l_test = []
 jc_l_test = []
 dc_l_val = []
 jc_l_val = []
-f = open('../metric/results_iou.txt', 'w')
+
+f = open('../metric_fast/results_iou.txt', 'w')
+
 for sample_id in sample_id_l:
 
     dcs = []
@@ -229,11 +231,11 @@ for sample_id in sample_id_l:
     sample_id = sample_id + 1
     f.write(str(sample_id).zfill(4) + '\n')
     # 文件夹路径
-    folder_path = '../detection/runs/detect/unmixing_' +str(sample_id).zfill(2) + '/labels/'  # 更改为你的文件夹路径
+    folder_path = '../detection/runs/detect/unmixing_fast_' +str(sample_id).zfill(2) + '/labels/'  # 更改为你的文件夹路径
     tif_path = '../detection/data/unmixing/fluorescence_time_data_tif/' +str(sample_id).zfill(4) + '/'
     tif_files_all = os.listdir(tif_path)
     tif_files_all.sort()
-    save_path = '../metric/results_' +str(sample_id).zfill(2) + '/'
+    save_path = '../metric_fast/results_' +str(sample_id).zfill(2) + '/'
     os.makedirs(save_path, exist_ok=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -406,7 +408,8 @@ for sample_id in sample_id_l:
                     io.imsave(os.path.join(save_path, str(int(name_curr)+1).zfill(4) + '_' + class_l[int(c)] + '_' + str(tif_idx).zfill(2) + '.tif'), tif_save)
 
 
-            cv2.imwrite(os.path.join(save_path, str(int(name_curr)+1).zfill(4) + '.png'), color_image)
+            cv2.imwrite(os.path.join(save_path, str(int(name_curr)+1).zfill(4) + '.png'), color_image_copy)
+            # break
             visualized_image = cv2.addWeighted(color_image, 0.9, segment_mask, 0.1, 0)
             cv2.imwrite(os.path.join(save_path, str(int(name_curr) + 1).zfill(4) + '_segment.png'), visualized_image)
 
@@ -420,6 +423,9 @@ for sample_id in sample_id_l:
         x_min, y_min, x_max, y_max = invert_convert((width, height), (float(x), float(y), float(w), float(h)))
         c = max_confidence[1]
         save_line_l.append([c, x_min, y_min, x_max, y_max])
+
+        # if max_confidence_idx == 30:
+        #     break
 
 
     tif_files = tif_files_all[int(name_curr)*5:(int(name_curr)+1)*5]
@@ -534,7 +540,7 @@ for sample_id in sample_id_l:
             tif_shrink = tif[border_height:-border_height, border_width:-border_width].copy()
 
 
-    cv2.imwrite(os.path.join(save_path, str(int(name_curr)+1).zfill(4) + '.png'), color_image)
+    cv2.imwrite(os.path.join(save_path, str(int(name_curr)+1).zfill(4) + '.png'), color_image_copy)
     visualized_image = cv2.addWeighted(color_image, 0.9, segment_mask, 0.1, 0)
     cv2.imwrite(os.path.join(save_path, str(int(name_curr) + 1).zfill(4) + '_segment.png'), visualized_image)
 
