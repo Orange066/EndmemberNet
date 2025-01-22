@@ -695,7 +695,7 @@ def update_dropdowns(selection):
 
 with gr.Blocks() as demo:
     gr.Markdown(
-        "# Title: Real-time Deep Learning Spectral Imaging In vivo")
+        "# Title: Fluorophore-Enabled Deep-Learning Hyperspectral Imaging In Living Mammals")
     # gr.Markdown(
     #     "# Title: AI-assisted high-capacity dynamic multiplexed imaging in vivo of monochromatic NIR-II-L fluorescence by excitation spectral resolving. ")
     gr.Markdown(
@@ -850,6 +850,6 @@ with gr.Blocks() as demo:
     image_upload.change(fn=handle_upload, inputs=[image_upload, input_message, input_data_type, custom_example],
                         outputs=[input_message, custom_example, input_data_type])
 
-    gr.Markdown("Copyright © 2024 School of Computer Science and Technology, Digital Media Lab, Fudan University. All rights reserved.", elem_id="footer", css_class="footer")
+    gr.Markdown("Copyright © 2025 School of Computer Science and Technology, Digital Media Lab, Fudan University. All rights reserved.", elem_id="footer", css_class="footer")
 
 demo.queue().launch(server_name='0.0.0.0', server_port=7866)

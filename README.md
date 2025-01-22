@@ -1,10 +1,10 @@
 # EndmemberNet
-Official Implementation for "Real-time Deep Learning Spectral Imaging In vivo".
+Official Implementation for "Fluorophore-Enabled Deep-Learning Hyperspectral Imaging In Living Mammals".
 ## Offline Demo
 
 We provide a offline demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
 
-![demo1](./demo/demo1.png)
+![demo1](./demo/demo1.jpeg)
 
 1. Download the Finetuned Models
 
@@ -102,7 +102,8 @@ You can then find the trained segmentation model and the test dataset results in
 Run the following code to generate the unmixing results in the `unmix/` folder:
 
 ```
-python unmix.py # unmixing.py file is in the root path
+python unmix.py
+python unmix_fast.py
 ```
 
 ### 5. Demo
@@ -150,4 +151,4 @@ In the 'software/camera' folder, you can use a Princeton camera to capture fluor
 
 ## Credit
 
-Our code borrows from [YOLOv5](https://github.com/ultralytics/yolov5), [Deeplabv3+](https://github.com/VainF/DeepLabV3Plus-Pytorch), and [RIFE](https://github.com/hzwer/ECCV2022-RIFE)
+Our code borrows from [YOLOv5](https://github.com/ultralytics/yolov5), [Deeplabv3+](https://github.com/VainF/DeepLabV3Plus-Pytorch), and [RIFE](https://github.com/hzwer/ECCV2022-RIFE).
