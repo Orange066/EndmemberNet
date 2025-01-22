@@ -79,7 +79,7 @@ def data_augment(tif_files):
         weighted_sum = np.zeros_like(img_l[0])
         for arr, weight in zip(img_l, weights):
             weighted_sum += arr * weight
-
+        # weighted_sum = img_l[j]
         img_array = (weighted_sum - weighted_sum.min()) / (weighted_sum.max() - weighted_sum.min() + 1e-4) * 255
         data_augment_l.append(img_array)
 
