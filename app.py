@@ -697,14 +697,14 @@ def update_dropdowns(selection):
 
 with gr.Blocks() as demo:
     gr.Markdown(
-        "# Title: Fluorophore-Enabled Deep-Learning Hyperspectral Imaging In Living Mammals")
+        "# Title: Fluorophore-Enabled Artificial Intelligence Hyperspectral Imaging In Living Mammals")
     # gr.Markdown(
     #     "# Title: AI-assisted high-capacity dynamic multiplexed imaging in vivo of monochromatic NIR-II-L fluorescence by excitation spectral resolving. ")
     gr.Markdown(
         "This demo allows you to run the models on your own images or the examples  from the paper. Please refer to the paper for more details.")
 
     gr.Markdown(
-        "This is an online but non-real-time demo that processes all the spectral images before returning the results. We also provide a real-time unmixing version in the 'software' folder.")
+        "This is an offline demo that processes all the spectral images before returning the results. We also provide an online unmixing version in the 'software' folder.")
 
 
     gr.Markdown("## Instructions")
@@ -747,7 +747,7 @@ with gr.Blocks() as demo:
             input_message = gr.Textbox(label="Data Information", value=image_example_l[0])
             visualize_input = gr.Button("Visualize Input")
         with gr.Column():
-            input_data_type = gr.Dropdown(label="Data Type", choices=['Image', 'Video (Video takes longer.)'],
+            input_data_type = gr.Dropdown(label="Data Type", choices=['Image', 'Video (Video takes longer. 3mins.)'],
                                           value="Image", interactive=True)
             reset_input = gr.Button("Reset Input")
         with gr.Column():
@@ -777,7 +777,7 @@ with gr.Blocks() as demo:
                                          visible=False).style(height="auto")
 
     with gr.Row():
-        process_type = gr.Dropdown(label="Process Type", choices=['Image', 'Video (Video takes longer.)'],
+        process_type = gr.Dropdown(label="Process Type", choices=['Image', 'Video (Video takes longer. 3mins.))'],
                                    value="Image",
                                    interactive=True)
         device_select = gr.Dropdown(label="Device", choices=DEVICES, value="CUDA", interactive=True)

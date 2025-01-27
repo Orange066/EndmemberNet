@@ -1,8 +1,8 @@
 # EndmemberNet
-Official Implementation for "Fluorophore-Enabled Deep-Learning Hyperspectral Imaging In Living Mammals".
+Official Implementation for "Fluorophore-Enabled Artificial Intelligence Hyperspectral Imaging In Living Mammals".
 ## Offline Demo
 
-We provide a offline demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
+We provide an offline demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
 
 ![demo1](./demo/demo1.jpeg)
 
