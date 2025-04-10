@@ -1,5 +1,5 @@
 # EndmemberNet
-Official Implementation for "Fluorophore-Enabled Artificial Intelligence Hyperspectral Imaging In Living Mammals".
+Official Implementation for "Excitation-encoded Single-emission Shortwave Infrared Lanthanide Fluorophore Palette for Live Mammalian Multispectral Imaging".
 ## Offline Demo
 
 We provide an offline demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
