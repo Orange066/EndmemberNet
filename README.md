@@ -39,7 +39,7 @@ conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=
 You can install the required python packages by the following command:
 
 ```
-pip install ultralytics gitpython opencv-python lmdb imageio scikit-image tensorboard medpy numpy scipy tiffile matplotlib protobuf gradio==3.39.0 fastapi==0.111.0 fastapi-cli==0.0.4 gradio_client==0.16.1  httpx==0.24.1 nest-asyncio==1.5.8 uvicorn==0.30.1
+pip install ultralytics gitpython opencv-python lmdb imageio scikit-image tensorboard medpy numpy scipy tiffile matplotlib protobuf gradio==3.39.0 fastapi==0.111.0 fastapi-cli==0.0.4 gradio_client==0.16.1  httpx==0.24.1 nest-asyncio==1.5.8 uvicorn==0.30.1 cmake lit
 ```
 
 3. Run the Web Interface
@@ -77,7 +77,7 @@ cd detection # Get into the directory
 CUDA_VISIBLE_DEVICES=0 python train.py --data data/unmixing/unmixing.yaml --name unmixing # Train the model
 
 sed -i 's/\r//' test.sh && bash test.sh # Test the model
-sed -i 's/\r//' test.sh && bash test.sh # Test the model using quick data augmentation
+sed -i 's/\r//' test_fast.sh && bash test_fast.sh # Test the model using quick data augmentation
 ```
 
 You can then find the trained detection model and the test dataset results in the `detection/runs/train/` and `detection/runs/detect/` folders, respectively.
