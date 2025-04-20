@@ -697,7 +697,7 @@ def update_dropdowns(selection):
 
 with gr.Blocks() as demo:
     gr.Markdown(
-        "# Title: Fluorophore-Enabled Artificial Intelligence Hyperspectral Imaging In Living Mammals")
+        "# Title: Excitation-encoded Single-emission Shortwave Infrared Lanthanide Fluorophore Palette for Live Mammalian Multispectral Imaging")
     # gr.Markdown(
     #     "# Title: AI-assisted high-capacity dynamic multiplexed imaging in vivo of monochromatic NIR-II-L fluorescence by excitation spectral resolving. ")
     gr.Markdown(
