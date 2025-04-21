@@ -8,6 +8,7 @@ camera/
     checkpoints/
         detection/
         segmentation/
+    lib/
         
 example/ 
     exampledata/
@@ -15,6 +16,7 @@ example/
     checkpoints/
         detection/
         segmentation/
+    lib/
 ```
 
 In the 'software/camera' folder, you can use a Princeton camera to capture fluorescence images and perform real-time unmixing, provided you **install the LightField software and set the 'LIGHTFIELD_ROOT' environment variable**. If the 'LIGHTFIELD_ROOT' path is not set, you can run the 'main.exe' file in the 'software/example' folder and click 'Use Example' and 'Extract Spectrum' to view the example unmixing results from our paper.
