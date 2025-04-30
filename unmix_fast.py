@@ -27,6 +27,7 @@ for sample_id in sample_id_l:
     # os.makedirs(os.path.join(save_path, 'model_visualize'), exist_ok=True)
 
     # path = '/opt/cr/unmixing/yolov5-master/results_unmixing10_2_auto_time04_crop3'
+    os.makedirs('metric_fast', exist_ok=True)
     path = 'metric_fast/results_' +str(sample_id).zfill(2)
     files_all = os.listdir(path)
     files_all.sort()

@@ -221,6 +221,7 @@ jc_l_test = []
 dc_l_val = []
 jc_l_val = []
 
+os.makedirs('../metric_fast', exist_ok=True)
 f = open('../metric_fast/results_iou.txt', 'w')
 
 for sample_id in sample_id_l:
