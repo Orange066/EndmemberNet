@@ -6,17 +6,18 @@ We provide an offline demo for EndmemberNet at http://fdudml.cn:6789. You can al
 
 ![demo1](./demo/demo1.jpeg)
 
-1. Download the Finetuned Models
+1. Download the pretrained Models
 
-You can download the finetuned models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can unzip the file and put the folder in the root directory of EndmemberNet. The path should be structured as follows:
+You can download the pretrained models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can unzip the file and put the folder in the root directory of EndmemberNet. The path should be structured as follows:
 
 ```
-exampledata/
-    Unmixing/
+EndmemberNet/
+    exampledata/
+        Unmixing/
 
-checkpoints/
-    detection/
-    segmentation/
+    checkpoints/
+        detection/
+        segmentation/
 ```
 
 2. Install Packages 
@@ -52,6 +53,7 @@ python app.py
 
 Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0.1:7866/). You can upload your own image or use our examples to run EndmemberNet.
 
+
 ## Train and Test EndmemberNet
 
 ### 1. Prepare the datasets
@@ -59,12 +61,13 @@ Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0
 You can download our preprocessed  training, validation, testing datas from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692) or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_TrainValTestData) and extract it into the `detection/` folder. The data path should be structured as follows:
 
 ```
-detection/
-    data/
-    	hyps/
-    	images/
-    	scripts/
-    	unmixing/
+EndmemberNet/
+    detection/
+        data/
+            hyps/
+            images/
+            scripts/
+            unmixing/
 ```
 
 ### 2. Train detection model
@@ -82,6 +85,8 @@ sed -i 's/\r//' test_fast.sh && bash test_fast.sh # Test the model using quick d
 
 You can then find the trained detection model and the test dataset results in the `detection/runs/train/` and `detection/runs/detect/` folders, respectively.
 
+You can skip the training step and directly download the pretrained model from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model), and put the pretrained model to the directory `detection/runs/train/unmixing/weights/`.
+
 ### 3. Train segmentation model
 
 Run the following code to train and test the segmentation model:
@@ -97,6 +102,8 @@ CUDA_VISIBLE_DEVICES=0 python test_quick.py # Test the model using quick data au
 
 You can then find the trained segmentation model and the test dataset results in the ` segmentation/train_log/` and `metric/` folders, respectively.
 
+You can skip the training step and directly download the pretrained model from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model), and put the pretrained model to the directory `segmentation/train_log/`.
+
 ### 4. Unmixing
 
 Run the following code to generate the unmixing results in the `unmix/` folder:
@@ -111,12 +118,13 @@ python unmix_fast.py
 Copy `detection/runs/train/unmixing/weights/best.pt` to `checkpoints/detection/`, and copy `segmentation/train_log/checkpoints/detection/multimodal.pkl` to `checkpoints/segmentation/`.  Then, download the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet, and unzip the file and put the folder in the root directory of EndmemberNet. The path should be structured as follows:
 
 ```
-exampledata/
-    Unmixing/
+EndmemberNet/
+    exampledata/
+        Unmixing/
 
-checkpoints/
-    detection/
-    segmentation/
+    checkpoints/
+        detection/
+        segmentation/
 ```
 
 After that, run the following command:
@@ -132,21 +140,23 @@ Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0
 We provide the software in the 'software' directory. Please download the finetuned models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) , the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692) or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet and software from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model). Then, you can unzip the file and put the folder in the root directory of EndmemberNet. 
 
 ```
-camera/
-    exampledata/
-        Unmixing/
-    checkpoints/
-        detection/
-        segmentation/
-    lib/
-        
-example/ 
-    exampledata/
-        Unmixing/
-    checkpoints/
-        detection/
-        segmentation/
-    lib/
+EndmemberNet/
+    software/
+        camera/
+            exampledata/
+                Unmixing/
+            checkpoints/
+                detection/
+                segmentation/
+            lib/
+                
+        example/ 
+            exampledata/
+                Unmixing/
+            checkpoints/
+                detection/
+                segmentation/
+            lib/
 ```
 
 In the 'software/camera' folder, you can use a Princeton camera to capture fluorescence images and perform real-time unmixing, provided you **install the LightField software and set the 'LIGHTFIELD_ROOT' environment variable**. If the 'LIGHTFIELD_ROOT' path is not set, you can run the 'main.exe' file in the 'software/example' folder and click 'Use Example' and 'Extract Spectrum' to view the example unmixing results from our paper.
