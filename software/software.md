@@ -3,23 +3,33 @@ Please download the finetuned models  from the [Zenodo repository](https://doi.o
 
 ```
 camera/
-    exampledata/
-        Unmixing/
-    checkpoints/
-        detection/
-        segmentation/
-    lib/
+    main/
+        exampledata/
+            Unmixing/
+        checkpoints/
+            detection/
+            segmentation/
+        lib/
+        main.exe
         
 example/ 
-    exampledata/
-        Unmixing/
-    checkpoints/
-        detection/
-        segmentation/
-    lib/
+    main/
+        exampledata/
+            Unmixing/
+        checkpoints/
+            detection/
+            segmentation/
+        lib/
+        main.exe
 ```
 
-In the 'software/camera' folder, you can use a Princeton camera to capture fluorescence images and perform real-time unmixing, provided you **install the LightField software and set the 'LIGHTFIELD_ROOT' environment variable**. If the 'LIGHTFIELD_ROOT' path is not set, you can run the 'main.exe' file in the 'software/example' folder and click 'Use Example' and 'Extract Spectrum' to view the example unmixing results from our paper.
+In the `software/camera` folder, you can use a Princeton camera to capture fluorescence images and perform real-time unmixing, provided you **install the LightField software and set the `LIGHTFIELD_ROOT` environment variable**.  
+
+If the `LIGHTFIELD_ROOT` path is not set, you can run the `main.exe` file in the `software/example` folder and click **Use Example** and **Extract Spectrum** to view the example unmixing results from our paper.
+
+> ⚠️ Our software supports GPU acceleration using an **NVIDIA 2080Ti** and **CUDA 11.8**.  
+> In other environments where GPU support may be unavailable, it will fall back to CPU processing, which may result in slower performance.
+
 
 ## Trouble Shooting
 ### Resolving `RuntimeError: Failed to resolve Python.Runtime.Loader.Initialize`
