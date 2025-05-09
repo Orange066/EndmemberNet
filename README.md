@@ -6,7 +6,7 @@ We provide an offline demo for EndmemberNet at http://fdudml.cn:6789. You can al
 
 ![demo1](./demo/demo1.jpeg)
 
-1. Download the pretrained Models
+### 1. Download the pretrained Models
 
 You can download the pretrained models  from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622929) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_Model) and the examples from the [Zenodo repository](https://doi.org/10.5281/zenodo.13622692)  or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_ExampleData) of EndmemberNet. Then, you can unzip the file and put the folder in the root directory of EndmemberNet. The path should be structured as follows:
 
@@ -20,7 +20,7 @@ EndmemberNet/
         segmentation/
 ```
 
-2. Install Packages 
+### 2. Install Packages 
 
 * We use Anaconda to create enviroment.
 
@@ -43,7 +43,7 @@ You can install the required python packages by the following command:
 pip install ultralytics gitpython opencv-python lmdb imageio scikit-image tensorboard medpy numpy scipy tiffile matplotlib protobuf gradio==3.39.0 fastapi==0.111.0 fastapi-cli==0.0.4 gradio_client==0.16.1  httpx==0.24.1 nest-asyncio==1.5.8 uvicorn==0.30.1 cmake lit
 ```
 
-3. Run the Web Interface
+### 3. Run the Web Interface
 
 You can run the web interface by the following command:
 
