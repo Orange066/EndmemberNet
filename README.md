@@ -70,6 +70,8 @@ EndmemberNet/
             unmixing/
 ```
 
+If you want to start preprocessing the datasets from scratch, See the [preprocess documentation](preprocess/preprocess.md).
+
 ### 2. Train detection model
 
 Run the following code to train and test the detection model:
