@@ -70,7 +70,7 @@ EndmemberNet/
             unmixing/
 ```
 
-If you want to start preprocessing the datasets from scratch, See the [preprocess documentation](preprocess/preprocess.md).
+If you want to start preprocessing the datasets from scratch, See the [preprocess documentation](preprocess/README.md).
 
 ### 2. Train detection model
 
@@ -139,7 +139,7 @@ Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0
 
 ## Software
 
-See the [software documentation](software/software.md).
+See the [software documentation](software/README.md).
 
 ## Credit
 
