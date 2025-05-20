@@ -210,7 +210,9 @@ def detection(data_augment_l, data_ori_rgb, tif_path, box_history_l, idx, proces
         im /= 255  # 0 - 255 to 0.0 - 1.0
         im = torch.stack([im] * 3, dim=1)
         im = F.interpolate(im, size=(height, width), mode='bilinear', align_corners=False)
+        time_start = time.time()
         pred = MODEL_DET(im, augment=ARGS.augment, visualize=False)
+        time_lapse_0 = time.time() - time_start
         pred = non_max_suppression(pred, ARGS.conf_thres, ARGS.iou_thres, ARGS.classes, ARGS.agnostic_nms,
                                    max_det=ARGS.max_det)
         pred_boxs.extend(pred)
@@ -227,6 +229,8 @@ def detection(data_augment_l, data_ori_rgb, tif_path, box_history_l, idx, proces
         pred = non_max_suppression(pred, ARGS.conf_thres, ARGS.iou_thres, ARGS.classes, ARGS.agnostic_nms,
                                    max_det=ARGS.max_det)
         pred_boxs.extend(pred)
+
+    time_total = time_lapse_0
 
     pred_boxs = torch.cat(pred_boxs, dim=0)
     pred_boxs = pred_boxs.detach().cpu().numpy()
@@ -290,7 +294,7 @@ def detection(data_augment_l, data_ori_rgb, tif_path, box_history_l, idx, proces
         output_box_save_path = os.path.join(tif_path, 'output_box.png')
         cv2.imwrite(output_box_save_path, data_ori_rgb)
 
-    return crop_img_l, region_type_l, size_l, box_l, color_l, data_ori_rgb_copy, output_box_save_path, data_ori_rgb, box_history_l
+    return crop_img_l, region_type_l, size_l, box_l, color_l, data_ori_rgb_copy, output_box_save_path, data_ori_rgb, box_history_l, time_total
 
 
 def segmentation(crop_img_l, region_type_l, data_ori_rgb, data_ori_tif_l, size_l, box_l, color_l, tif_path, idx,
@@ -323,7 +327,7 @@ def segmentation(crop_img_l, region_type_l, data_ori_rgb, data_ori_tif_l, size_l
         output_seg_save_path = os.path.join(tif_path, 'output_seg.png')
         cv2.imwrite(output_seg_save_path, visualized_image)
 
-    return thresh_image_l, crop_tif_l, output_seg_save_path, visualized_image, data_ori_tif_l
+    return thresh_image_l, crop_tif_l, output_seg_save_path, visualized_image, data_ori_tif_l, time_count
 
 
 def unmixing(box_l, thresh_image_l, crop_tif_l, data_ori_tif_l, tif_path, data_ori_rgb_copy, color_l, idx, A_history_l,
@@ -490,6 +494,8 @@ def run_model(tif_path, process_type):
     # seg_save_l = []
     unmixing_l = []
     time_l = []
+    time_segmentation_l = []
+    time_detection_l = []
     for tif_idx in range(len(tif_files)):
         time_start = time.time()
         print('tif_idx', tif_idx)
@@ -503,7 +509,7 @@ def run_model(tif_path, process_type):
         ############################## detection ############################
         #####################################################################
 
-        crop_img_l, region_type_l, size_l, box_l, color_l, data_ori_rgb_copy, output_box_save_path, data_ori_rgb, box_history_l = detection(
+        crop_img_l, region_type_l, size_l, box_l, color_l, data_ori_rgb_copy, output_box_save_path, data_ori_rgb, box_history_l, detection_time = detection(
             data_augment_l, data_ori_rgb, tif_path, box_history_l, tif_idx, process_type=process_type)
         if crop_img_l is None:
             return [None, None, None, None, 'Cannot dectect five ROI areas.']
@@ -512,7 +518,7 @@ def run_model(tif_path, process_type):
         ########################### segmentation ############################
         #####################################################################
 
-        thresh_image_l, crop_tif_l, output_seg_save_path, visualized_image, data_ori_tif_l = segmentation(crop_img_l,
+        thresh_image_l, crop_tif_l, output_seg_save_path, visualized_image, data_ori_tif_l, segmentation_time = segmentation(crop_img_l,
                                                                                                           region_type_l,
                                                                                                           data_ori_rgb,
                                                                                                           data_ori_tif_l,
@@ -533,6 +539,8 @@ def run_model(tif_path, process_type):
 
         time_end = time.time()
         time_l.append(time_end - time_start)
+        time_segmentation_l.append(segmentation_time)
+        time_detection_l.append(detection_time)
 
         if process_type == 'Image' or ('Video' in process_type and tif_idx == 0):
             output_AI_file_path = [output_box_save_path, output_seg_save_path, output_txt_save_path]
@@ -588,8 +596,21 @@ def run_model(tif_path, process_type):
 
     if len(time_l) > 20:
         time_l = time_l[20:]
+        time_segmentation_l = time_segmentation_l[20:]
+        time_detection_l = time_detection_l[20:]
     time_l = np.sum(time_l) / len(time_l)
     time_l = round(1 / time_l, 2)
+
+    time_segmentation_l = np.sum(time_segmentation_l) / len(time_segmentation_l)
+    time_segmentation_l = round(1 / time_segmentation_l, 2)
+
+    time_detection_l = np.sum(time_detection_l) / len(time_detection_l)
+    time_detection_l = round(1 / time_detection_l, 2)
+
+    print('total' + str(time_l) + 'fps.')
+    print('segmentation' + str(time_segmentation_l) + 'fps.')
+    print('detection' + str(time_detection_l) + 'fps.')
+
     return [output_AI_file_path, output_AI_visual_path, output_results_visual_path, video_path_all,
             "Data: " + tif_path + ' has been unmixed.\nSpeed: ' + str(time_l) + 'fps.']
 
