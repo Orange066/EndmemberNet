@@ -1,8 +1,7 @@
 # Preprocess
 
 This section provides the steps for preprocessing the dataset.  
-Please first download the original data from the [Zenodo repository](https://doi.org/10.5281/zenodo.15471213) or [Hugging Face](https://huggingface.co/Orange066/Unmixing_RawData). Then, unzip the file and place the folder in the root directory of `EndmemberNet`.
-
+Please first download the original data from the [Zenodo repository](https://doi.org/10.5281/zenodo.15471213) or [Hugging Face](https://huggingface.co/datasets/Orange066/Unmixing_RawData). Then, unzip the file and place the folder in the root directory of `EndmemberNet`.
 
 
 ```
@@ -21,6 +20,7 @@ detection/
 ## Data Augmentation using Weighted Synthesis
 Run the following command:
 ```
+cd preprocess
 python weighted_synthesis.py
 ```
 This will generate two folders in `detection/data/unmixing/`:  
