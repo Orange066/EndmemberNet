@@ -14,20 +14,15 @@ Five-color multispectral imaging with Lanbow fluorophores was performed using a 
 
 ## 1. Preparation for Excitation Module
 
-**Laser Configuration**:
-Five continuous-wave semiconductor lasers (671, 690, 730, 760, and 785 nm) were combined using a five-in-one metal-cladded multimode fiber (200 μm input, 400 μm output) and homogenized using a liquid-core fiber.
+- **Laser Configuration**:
+   Five continuous-wave semiconductor lasers (671, 690, 730, 760, and 785 nm) were combined using a five-in-one metal-cladded multimode fiber (200 μm input, 400 μm output) and homogenized using a liquid-core fiber.
+- **Laser Power Density**:
+  - 671, 690, 730, 760 nm: 100 mW cm⁻²
+  - 785 nm: 125 mW cm⁻²
+- **Synchronization**:
+   A Data Acquisition (DAQ) device generates TTL signals for synchronized operation between laser drivers and the InGaAs camera.
 
-**Laser Power Density**:
-- 671, 690, 730, 760 nm: 100 mW cm⁻²
-- 785 nm: 125 mW cm⁻²
-
-**Synchronization**:
-
-- A Data Acquisition (DAQ) device generates TTL signals for synchronized operation between laser drivers and the InGaAs camera.
-
-<div style="text-align: center;">
-  <img src="../doc/imaging1.png" alt="描述" width="500"/>
-</div>
+![Figure – DAQ system for laser-camera sync](../doc/imaging1.png)
 
 ------
 
