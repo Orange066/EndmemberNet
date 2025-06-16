@@ -4,7 +4,7 @@ Official Implementation for "Excitation-encoded Single-emission Shortwave Infrar
 
 We provide an offline demo for EndmemberNet at http://fdudml.cn:6789. You can also employ the following steps to run the demo locally.
 
-![demo1](./demo/demo1.jpeg)
+![demo1](./doc/demo1.jpeg)
 
 ### 1. Download the pretrained Models
 

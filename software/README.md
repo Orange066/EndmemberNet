@@ -40,7 +40,7 @@ If your application crashes and running `main.exe` via Command Prompt results in
 RuntimeError: Failed to resolve Python.Runtime.Loader.Initialize
 ```
 
-![bug1](../demo/bug1.png)
+![bug1](../doc/bug1.png)
 
 you can try unblocking `Python.Runtime.dll`:
 
