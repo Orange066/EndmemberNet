@@ -139,7 +139,7 @@ Then, you can visit the web interface at [http://127.0.0.1:7866/](http://127.0.0
 
 ## Software
 
-See the [software documentation](software/README.md).
+See the [software documentation](software/README.md). The imaging setup is described in the [imaging documentation](../imaging/README.md).
 
 ## Credit
 
